@@ -1,14 +1,61 @@
-import cypress from "cypress"
 import { LoginPage } from "./LoginPage"
 const loginPageObj = new LoginPage()
 
 export class ProcessOrderPage {
     weblocators = {
+        mouseOverElement: 'nav div:nth-child(3)',
+        orderElement: 'body > div:nth-child(2) > section:nth-child(1) > div:nth-child(1) > nav:nth-child(2) > div:nth-child(1) > div:nth-child(4)',
         summary_total_non_dispatched_orders: '.heading2.Text_primary-colored__qnpSF',
+        processOrderElement: '.Text_body2__0FftJ.Text_subtitles-colored__s5ggG',
+        labelCta: '.Button_button-primary__9i0Rz.button-loading-undefined.rs-btn.rs-btn-primary.rs-btn-sm.rs-btn-block',
+        invoiceCta: '.Button_button-ghost__rieSu.button-loading-undefined.rs-btn.rs-btn-ghost.rs-btn-sm.rs-btn-block',
+        duplicatePopup: '.rs-modal-content',
+        expiredAWb: '.ProcessOrders_tabgroup-holder__KkW-P',
+        pendingOrder: '.ProcessOrders_tabgroup-holder__KkW-P',
+        checkBox: '.rs-checkbox.rs-checkbox-checked',
+        summaryTexts: '.Text_body3__jmTqb.Text_headings-colored__kF2dK',
+        duplicateOrderModalPopUp: '.rs-modal-content'
     }
+
     launching_processOrder() {
-        loginPageObj.openUrl();
-        loginPageObj.login();
+        cy.get(this.weblocators.mouseOverElement).trigger('mouseover')
+        cy.get(this.weblocators.orderElement).click()
+        cy.get(this.weblocators.processOrderElement).eq(2).click()
+    }
+
+    clickingOnExpiredAwb() {
+        cy.get(this.weblocators.expiredAWb).contains('Expired AWB Orders').click()
+    }
+
+    clickingOnPgPendingOrder() {
+        cy.get(this.weblocators.pendingOrder).contains('PG Pending Orders').click()
+    }
+
+    downloadLabelFromPrintSection() {
+        cy.wait(5000)
+        cy.get(this.weblocators.labelCta).eq(2).click()
+        cy.get(this.weblocators.duplicateOrderModalPopUp).should('be.visible').contains('Print Anyways').click()
+        cy.wait(5000)
+    }
+
+    downloadInvoiceFromPrintSection() {
+        cy.wait(5000)
+        cy.get(this.weblocators.invoiceCta).eq(2).click()
+    }
+
+    verifyTotalNonDispatchedOrderText() {
+        cy.wait(5000)
+        cy.get(this.weblocators.summaryTexts).eq(0).should('have.text', 'Total Non-Dispatched Orders')
+    }
+
+    verifyTextPrintSection() {
+        cy.wait(5000)
+        cy.get(this.weblocators.summaryTexts).eq(3).should('have.text', 'Non Dispatched Orders in Print')
+    }
+
+    verifyTextPackSection() {
+        cy.wait(5000)
+        cy.get(this.weblocators.summaryTexts).eq(5).should('have.text', 'In Pack')
     }
 
 }

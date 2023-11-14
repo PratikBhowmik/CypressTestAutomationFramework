@@ -1,5 +1,3 @@
-// const cypress = require("cypress")
-
 import 'cypress-file-upload';
 import { LoginPage } from "./LoginPage"
 import loginData from "../fixtures/loginData.json"

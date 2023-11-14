@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test:Processordertest": "npx cypress run --spec cypress/e2e/tests/ProcessorderTests.cy.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -12,6 +13,7 @@
     "cypress": "^13.3.2"
   },
   "devDependencies": {
-    "cypress-file-upload": "^5.0.8"
+    "cypress-file-upload": "^5.0.8",
+    "cypress-mochawesome-reporter": "^3.6.1"
   }
 }
