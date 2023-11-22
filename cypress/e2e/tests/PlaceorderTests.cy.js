@@ -1,5 +1,5 @@
-import { LoginPage } from "../../pages/LoginPage"
-import { PlaceorderPage } from "../../pages/PlaceorderPage"
+import { LoginPage } from "../../pages/LoginPage.cy"
+import { PlaceorderPage } from "../../pages/PlaceorderPage.cy"
 import loginData from "../../fixtures/loginData.json"
 import customerData from "../../fixtures/customerData.json"
 const loginObj = new LoginPage()

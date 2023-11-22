@@ -1,5 +1,5 @@
 import 'cypress-file-upload';
-import { LoginPage } from "./LoginPage"
+import { LoginPage } from "./LoginPage.cy"
 import loginData from "../fixtures/loginData.json"
 const loginObj = new LoginPage()
 export class PlaceorderPage {
