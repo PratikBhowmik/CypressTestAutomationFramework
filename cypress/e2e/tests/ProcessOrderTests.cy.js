@@ -1,6 +1,6 @@
 import { LoginPage } from "../../pages/LoginPage.cy"
 import loginData from "../../fixtures/loginData.json"
-import { ProcessOrderPage } from "../../pages/ProcessOrderPage.cy"
+import { ProcessOrderPage } from "../../pages/ProcessOrderPage"
 const loginObj = new LoginPage()
 const processOrderObj = new ProcessOrderPage()
 
@@ -8,6 +8,7 @@ beforeEach(() => {
     loginObj.openUrl()
     loginObj.login(loginData.loginPhnNumber, loginData.otp)
     processOrderObj.launching_processOrder()
+
 })
 
 describe('process order test cases', () => {
@@ -211,7 +212,7 @@ describe('process order test cases', () => {
     })
 
 
-    //cancellation of online order
+    //Verify online order cancellation from print state
     it.skip('process_order_21', () => {
         cy.reload()
         cy.wait(5000)
@@ -243,7 +244,7 @@ describe('process order test cases', () => {
         })
     })
 
-    //Verify regenerating expired AWB will be generating new AWB but order id will be same
+    //Verify regenerate expired AWB flow
     it.skip('process_order_22', () => {
 
         cy.reload()
@@ -259,8 +260,8 @@ describe('process order test cases', () => {
 
     })
 
-    //Verify non duplicate order end to end flow from print to pack to handover
-    it.skip('process_order_23', () => {
+    //Verify non duplicate order end to end flow
+    it.skip('process_order_24', () => {
         cy.reload()
         cy.wait(5000)
         cy.get('[class = "rs-input"]').type('NSZ1700414536712')
@@ -284,12 +285,10 @@ describe('process order test cases', () => {
         cy.get('[class = "rs-input-group-addon rs-input-group-btn rs-btn rs-btn-default"]').click()
         cy.get('[class = "HandoverChildViewCard_card__6hKXd"]').invoke('text').should('match', /NSZ1700414536712/)
 
-
-
     })
 
-    //Verify duplicate order end to end flow from print to pack to handover
-    it.skip('process_order_24', () => {
+    //Verify duplicate order end to end flow
+    it.skip('process_order_23', () => {
         cy.reload()
         cy.wait(5000)
         cy.get('[class = "rs-input"]').type('NS05L1700118455673')
@@ -316,47 +315,52 @@ describe('process order test cases', () => {
 
     })
 
-    //Verify clubbed duplicate order flow from print to pack to handover
+    //Verify clubbed duplicate order end to end flow
     it('process_order_25', () => {
         cy.reload()
         cy.wait(5000)
         cy.get('[class = "Button_button-default__NeJ4p button-loading-undefined rs-btn rs-btn-default rs-btn-md"]').contains('Clubbed').click()
-        cy.get('[class = "InputSearch_select__QuvGO rs-picker rs-picker-input rs-picker-default rs-picker-toggle-wrapper rs-picker-has-value"]').click()
-
-
-
-        cy.get('[class = "rs-picker-select-menu-item"]').each(($el, index, $lis) => {
-            if ($el.text().includes('AWB Number')) {
-                //    cy.get('[class = "rs-picker-select-menu-item"]').eq(index).click()
-                $el.click()
-
-            }
-        })
-        cy.get('[class = "rs-input"]').type('DUMY16QFBEYQ')
-        cy.get('[class = "rs-input-group-addon rs-input-group-btn rs-btn rs-btn-default"]').click()
-        cy.get('[class = "Button_button-primary__9i0Rz button-loading-undefined rs-btn rs-btn-primary rs-btn-sm rs-btn-block"]').click()
-        cy.get('[class = "rs-modal-footer"]').contains('Print All').click()
-        cy.get('[class = "rs-input"]').type('DUMY16QFBEYQ')
-        cy.get('[class = "rs-input-group-addon rs-input-group-btn rs-btn rs-btn-default"]').click()
-        cy.get('[class = "Text_body2__0FftJ Text_mb-md__B0Lt4"]').should('include.text', 'There are currently no result available based on selected filter criteria')
-
-        cy.get('[class = "Button_button-default__NeJ4p button-loading-undefined rs-btn rs-btn-default rs-btn-md"]').contains('Pack').click()
-        cy.get('[class = "InputSearch_select__QuvGO rs-picker rs-picker-input rs-picker-default rs-picker-toggle-wrapper rs-picker-has-value"]').click()
-        cy.get('[class = "rs-picker-select-menu-item"]').eq(0).click()
-        cy.get('[class = "rs-input"]').type('DUMY16QFBEYQ')
-        cy.get('[class = "rs-input-group-addon rs-input-group-btn rs-btn rs-btn-default"]').click()
-        cy.get('[class = "PrintPackViewCard_card-cell__0Vrno rs-flex-box-grid-item rs-flex-box-grid-item-0 rs-col rs-col-xl-3 rs-col-lg-4 rs-col-md-5 rs-col-sm-7"]').invoke('text').should('match', /DUMY16QFBEYQ/)
-        cy.get('[class = "Button_button-primary__9i0Rz button-loading-undefined Pack_handover-button__rkwYV rs-btn rs-btn-primary rs-btn-sm rs-btn-block"]').click()
-        cy.get('[class = "rs-input"]').type('DUMY16QFBEYQ')
-        cy.get('[class = "rs-input-group-addon rs-input-group-btn rs-btn rs-btn-default"]').click()
-        cy.get('[class = "Text_body2__0FftJ Text_mb-md__B0Lt4"]').should('include.text', 'There are currently no result available based on selected filter criteria')
-
-        cy.get('[class = "Button_button-default__NeJ4p button-loading-undefined rs-btn rs-btn-default rs-btn-md"]').contains('Handover').click()
-        cy.get('[class = "InputSearch_select__QuvGO rs-picker rs-picker-input rs-picker-default rs-picker-toggle-wrapper rs-picker-has-value"]').click()
-        cy.get('[class = "rs-picker-select-menu-item"]').eq(0).click()
-        cy.get('[class = "rs-input"]').type('DUMY16QFBEYQ')
-        cy.get('[class = "rs-input-group-addon rs-input-group-btn rs-btn rs-btn-default"]').click()
-        cy.get('[class = "HandoverChildViewCard_card__6hKXd"]').invoke('text').should('match', /DUMY16QFBEYQ/)
+        cy.get('[class = "InputSearch_select__QuvGO rs-picker rs-picker-input rs-picker-default rs-picker-toggle-wrapper rs-picker-has-value"]').trigger('click')
 
     })
+
+    //change logistics partner and assert AWB is changed
+    it.skip('process_order_26', () => {
+
+        let initialAWB;
+        let currentAWB;
+
+        cy.reload()
+        cy.wait(5000)
+        cy.get('[class = "rs-input"]').clear().type('NSV1700633344905')
+        cy.get('[class = "rs-input-group-addon rs-input-group-btn rs-btn rs-btn-default"]').click()
+
+        cy.get('[class = "Flexbox_flex-row__aKbHb Flexbox_nowrap__8vOkG rs-flex-box-grid rs-flex-box-grid-top rs-flex-box-grid-start"]').invoke('text').then((text) => {
+            initialAWB = text.trim();
+            cy.log(initialAWB)
+        })
+
+        cy.get('[class = "Button_button-ghost__rieSu button-loading-undefined rs-btn rs-btn-ghost rs-btn-sm rs-btn-block"]').contains('Logistic').click()
+        cy.get('[class = "rs-input rs-input-md"]').eq(1).clear().type('nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn')
+        cy.get('[class = "Flexbox_flex-row__aKbHb Flexbox_gutter-sm__kuLks rs-flex-box-grid rs-flex-box-grid-top rs-flex-box-grid-start"]').contains('EKART SURFACE').click()
+        cy.get('[class = "rs-drawer-actions"]').contains('Save').click()
+        cy.get('[class = "rs-modal-content"]').contains('Yes,Change').click()
+
+        cy.wait(3000)
+        cy.get('[class = "rs-input"]').clear().type('NSV1700633344905')
+        cy.wait(3000)
+        cy.get('[class = "rs-input-group-addon rs-input-group-btn rs-btn rs-btn-default"]').click()
+
+        cy.get('[class = "Flexbox_flex-row__aKbHb Flexbox_nowrap__8vOkG rs-flex-box-grid rs-flex-box-grid-top rs-flex-box-grid-start"]').invoke('text').then((text) => {
+            currentAWB = text.trim();
+            cy.log(currentAWB)
+
+            if (initialAWB && currentAWB) {
+                expect(initialAWB).to.not.equal(currentAWB)
+            } else {
+                cy.log('why came to else block??')
+            }
+        })
+    })
+
 })

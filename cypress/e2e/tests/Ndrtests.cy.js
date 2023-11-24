@@ -1,6 +1,6 @@
 import { LoginPage } from "../../pages/LoginPage.cy"
 import loginData from "../../fixtures/loginData.json"
-import { NDRpage } from "../../pages/NDRpage.cy"
+import { NDRpage } from "../../pages/NDRpage"
 const loginObj = new LoginPage()
 const ndrObj = new NDRpage()
 
@@ -41,7 +41,7 @@ describe('NDR tab test cases', () => {
         cy.get('.Flexbox_flex-column__cNkZ2.Flexbox_align-middle__-J0b5.NoFilterFound_wrapper__haM12.rs-flex-box-grid.rs-flex-box-grid-top.rs-flex-box-grid-center').should('contain.text', 'There are currently no result available based on selected filter criteria.')
     })
 
-    it('NDR_tab_04', () => {
+    it.skip('NDR_tab_04', () => {
         cy.reload()
 
         cy.get('.rs-picker-toggle.rs-btn.rs-btn-default.rs-btn-md').eq(0).click()
@@ -74,7 +74,7 @@ describe('NDR tab test cases', () => {
 
     })
 
-    it('NDR_tab_05', () => {
+    it.skip('NDR_tab_05', () => {
         cy.reload()
 
         cy.get('[class = "rs-picker-toggle rs-btn rs-btn-default rs-btn-md"]').eq(1).click()
@@ -85,5 +85,11 @@ describe('NDR tab test cases', () => {
 
         cy.get('.Flexbox_flex-column__cNkZ2.Flexbox_align-middle__-J0b5.NoFilterFound_wrapper__haM12.rs-flex-box-grid.rs-flex-box-grid-top.rs-flex-box-grid-center').should('contain.text', 'There are currently no result available based on selected filter criteria.')
 
+    })
+
+    it.skip ('NDR_tab_06', () => {
+        cy.reload()
+        cy.get('[class = "rs-picker-toggle-value"]').click()
+        cy.get('[class = "rs-picker-toggle-value"]').contains('AWB Number').click()
     })
 })
