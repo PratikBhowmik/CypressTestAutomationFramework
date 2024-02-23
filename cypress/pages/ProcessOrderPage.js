@@ -4,9 +4,9 @@ const loginPageObj = new LoginPage()
 export class ProcessOrderPage {
     weblocators = {
         mouseOverElement: 'nav div:nth-child(3)',
-        orderElement: 'body > div:nth-child(2) > section:nth-child(1) > div:nth-child(1) > nav:nth-child(2) > div:nth-child(1) > div:nth-child(4)',
+        orderElement: '[class = "Flexbox_flex-row__aKbHb Flexbox_align-middle__-J0b5 rs-flex-box-grid rs-flex-box-grid-top rs-flex-box-grid-space-between"]',
         summary_total_non_dispatched_orders: '.heading2.Text_primary-colored__qnpSF',
-        processOrderElement: '.Text_body2__0FftJ.Text_subtitles-colored__s5ggG',
+        // processOrder: '[class = "Text_body2__0FftJ Text_primary-colored__qnpSF"]',
         labelCta: '.Button_button-primary__9i0Rz.button-loading-undefined.rs-btn.rs-btn-primary.rs-btn-sm.rs-btn-block',
         invoiceCta: '.Button_button-ghost__rieSu.button-loading-undefined.rs-btn.rs-btn-ghost.rs-btn-sm.rs-btn-block',
         duplicatePopup: '.rs-modal-content',
@@ -18,9 +18,18 @@ export class ProcessOrderPage {
     }
 
     launching_processOrder() {
+
+        // cy.get('[class = "rs-modal-content"]').contains('Continue').then(($continue) => {
+        //     cy.wrap($continue).click()
+        // })
+
+
         cy.get(this.weblocators.mouseOverElement).trigger('mouseover')
-        cy.get(this.weblocators.orderElement).click()
-        cy.get(this.weblocators.processOrderElement).eq(2).click()
+        cy.get(this.weblocators.orderElement).contains('Orders').click()
+        cy.get('[class = "SideNav_submenuitem-holder__dRus9"]').contains('Process Orders').click()
+
+
+
     }
 
     clickingOnExpiredAwb() {

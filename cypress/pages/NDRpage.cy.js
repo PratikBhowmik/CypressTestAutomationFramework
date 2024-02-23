@@ -2,12 +2,12 @@ export class NDRpage {
 
     weblocators = {
         mouseOverElement: 'nav div:nth-child(3)',
-        orderElement: 'body > div:nth-child(2) > section:nth-child(1) > div:nth-child(1) > nav:nth-child(2) > div:nth-child(1) > div:nth-child(4)'
+        orderElement: '[class = "Flexbox_flex-row__aKbHb Flexbox_align-middle__-J0b5 rs-flex-box-grid rs-flex-box-grid-top rs-flex-box-grid-space-between"]'
         
     }
     launching_ndr() {
         cy.get(this.weblocators.mouseOverElement).trigger('mouseover')
-        cy.get(this.weblocators.orderElement).click()
-        cy.get('.SideNav_sidenav-item-container__PAVyt').contains('NDR').click()
+        cy.get(this.weblocators.orderElement).contains('Orders').click()
+        cy.get('[class = "SideNav_submenuitem-holder__dRus9"]').contains('NDR').click()
     }
 }
