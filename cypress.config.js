@@ -3,7 +3,10 @@ const { beforeRunHook, afterRunHook } = require('cypress-mochawesome-reporter/li
 
 module.exports = defineConfig({
 
-  projectId : '5pi3q3',
+  trashAssetsBeforeRuns : false,
+  video : true,
+
+  projectId : 'wtpt6o',
 
   reporter: 'cypress-mochawesome-reporter',
 
