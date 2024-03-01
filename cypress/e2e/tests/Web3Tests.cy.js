@@ -37,4 +37,8 @@ describe("Web3 test cases",() => {
         cy.get("[class = \"fixed z-[9999] flex justify-between w-full px-8 py-2 top-4 font-poppins\"]").should("contain.text","HOW3");
     })
 
+    it ('tc_web3_test_05', () => {
+        cy.get("[class = \"fixed z-[9999] flex justify-between w-full px-8 py-2 top-4 font-poppins\"]").should("contain.text","Get started");
+    })
+
 })

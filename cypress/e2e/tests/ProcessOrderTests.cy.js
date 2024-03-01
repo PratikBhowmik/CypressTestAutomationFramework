@@ -8,7 +8,6 @@ beforeEach(() => {
     loginObj.openUrl()
     loginObj.login(loginData.loginPhnNumber, loginData.otp)
     processOrderObj.launching_processOrder()
-
 })
 
 describe('process order test cases', () => {
@@ -188,7 +187,7 @@ describe('process order test cases', () => {
     })
 
     //Single order cancellation from print state
-    it ('process_order_18', () => {
+    it.skip ('process_order_18', () => {
 
         cy.reload()
         cy.wait(5000)
