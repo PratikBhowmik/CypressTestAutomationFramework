@@ -1,9 +1,16 @@
-const arr = [1, 2, 3, 4];
+//Reverse an array
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10];
+
 function reverse() {
-    let newArr = [];
-    for (let i = arr.length; i >= 1; i--) {
-        newArr.push(i);
+
+    let result = [];
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+
+        result.push(arr[i]);
     }
-    console.log(newArr);
+
+    return result;
 }
-reverse();
+
+console.log(reverse());
