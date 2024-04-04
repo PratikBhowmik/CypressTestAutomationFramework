@@ -13,6 +13,7 @@
     "cypress": "^13.6.0",
     "cypress-file-upload": "^5.0.8",
     "cypress-mochawesome-reporter": "^3.6.1",
-    "mochawesome": "^7.1.3"
+    "mochawesome": "^7.1.3",
+    "xlsx": "0.18.5"
   }
 }

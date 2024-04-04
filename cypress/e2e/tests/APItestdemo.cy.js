@@ -1,8 +1,23 @@
-describe('API test case', () => {
+describe("Test cases" , () => {
 
-    it ("API test case", () => {
-        cy.request("GET", "https://docs.cypress.io/guides/overview/why-cypress#API").then((response) => {
-            expect(response.status).to.equal(200);
-        });
+    it ("verify login page launches" , () => {
+        cy.visit("https://www.saucedemo.com/");
+        // cy.get()
     })
+
+    it ("Verify login cta is visible" , () => {
+        cy.visit("https://www.saucedemo.com/");
+        cy.get("#login-button").should("be.enabled");
+    })
+
+
+    it ("Verify login happens properly", () => {
+        cy.visit("https://www/saucedemo.com/");
+        cy.get("#user-name").type("abcc");
+        cy.get("#password").type("12345");
+        cy.get("#login-button").click();
+        // cy.url().should().have();
+    })
+
+
 })
