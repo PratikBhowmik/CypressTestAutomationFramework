@@ -1,23 +1,36 @@
-describe("Test cases" , () => {
+describe(`Automation testing of APIs using cypress`, function () {
 
-    it ("verify login page launches" , () => {
-        cy.visit("https://www.saucedemo.com/");
-        // cy.get()
+    context(`API response validation`, function () {
+        it(`GET request validation`, function () {
+            cy.request(`GET`, `https://3aa52d8d-fa7a-49aa-acd6-071ad13ed6df.mock.pstmn.io/users`)
+                .then(function (response) {
+                    expect(response.status).to.eq(200);
+                    expect(response.body).length.to.be.greaterThan(1);
+                })
+        })
+
+        it(`POST request validation`, function () {
+            cy.request(`POST`, `https://3aa52d8d-fa7a-49aa-acd6-071ad13ed6df.mock.pstmn.io/post`)
+                .then(function (response) {
+                    expect(response.status).to.eq(200);
+                })
+        })
+
+        it(`DELETE request validation`, function () {
+            cy.request(`DELETE`, `https://3aa52d8d-fa7a-49aa-acd6-071ad13ed6df.mock.pstmn.io/delete`)
+                .then(function (response) {
+                    expect(response.status).to.eq(200);
+                    expect(response.body).length.to.be.greaterThan(1);
+                })
+        })
     })
 
-    it ("Verify login cta is visible" , () => {
-        cy.visit("https://www.saucedemo.com/");
-        cy.get("#login-button").should("be.enabled");
+    context(`API validation using intercept`, function () {
+        it(`This is a validation for API request response using intercept`, function () {
+            cy.intercept(`GET`,`https://api.freeapi.app/api/v1/public/randomusers?page=1&limit=10`, (req) => {
+                expect(req.body).to.include(`Lunn Avenue`);
+            });
+            
+        })
     })
-
-
-    it ("Verify login happens properly", () => {
-        cy.visit("https://www/saucedemo.com/");
-        cy.get("#user-name").type("abcc");
-        cy.get("#password").type("12345");
-        cy.get("#login-button").click();
-        // cy.url().should().have();
-    })
-
-
 })

@@ -1,10 +1,11 @@
-const { defineConfig } = require("cypress")
-const { beforeRunHook, afterRunHook } = require('cypress-mochawesome-reporter/lib')
+const { defineConfig } = require(`cypress`);
+const { beforeRunHook, afterRunHook } = require('cypress-mochawesome-reporter/lib');
 
 module.exports = defineConfig({
 
   trashAssetsBeforeRuns: false,
   video: true,
+  chromeWebSecurity: false,
 
   projectId: 'wtpt6o',
 
