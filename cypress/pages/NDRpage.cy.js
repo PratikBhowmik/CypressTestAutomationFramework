@@ -6,8 +6,8 @@ export class NDRpage {
         
     }
     launching_ndr() {
-        cy.get(this.weblocators.mouseOverElement).trigger('mouseover')
-        cy.get(this.weblocators.orderElement).contains('Orders').click()
-        cy.get('[class = "SideNav_submenuitem-holder__dRus9"]').contains('NDR').click()
+        cy.get(this.weblocators.mouseOverElement).trigger('mouseover');
+        cy.get(this.weblocators.orderElement).contains('Orders').click();
+        cy.get('[class = "SideNav_submenuitem-holder__dRus9"]').contains('NDR').click();
     }
 }

@@ -27,10 +27,10 @@ describe(`Automation testing of APIs using cypress`, function () {
 
     context(`API validation using intercept`, function () {
         it(`This is a validation for API request response using intercept`, function () {
-            cy.intercept(`GET`,`https://api.freeapi.app/api/v1/public/randomusers?page=1&limit=10`, (req) => {
+            cy.intercept(`GET`, `https://api.freeapi.app/api/v1/public/randomusers?page=1&limit=10`, (req) => {
                 expect(req.body).to.include(`Lunn Avenue`);
             });
-            
+
         })
     })
 })

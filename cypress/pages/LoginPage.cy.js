@@ -8,13 +8,13 @@ export class LoginPage {
     }
 
     openUrl() {
-        cy.visit('http://v2.nushop-dashboard.kaip.in')
+        cy.visit('');
     }
 
     login(phonenumber , otp) {
-        cy.get(this.weblocators.phonenumber).type(phonenumber)
-        cy.get(this.weblocators.generateOtpButton).click()
-        cy.get(this.weblocators.otpField).type(otp)
-        cy.get(this.weblocators.confirmOtpButton).click()
+        cy.get(this.weblocators.phonenumber).type(phonenumber);
+        cy.get(this.weblocators.generateOtpButton).click();
+        cy.get(this.weblocators.otpField).type(otp);
+        cy.get(this.weblocators.confirmOtpButton).click();
     }
 }
