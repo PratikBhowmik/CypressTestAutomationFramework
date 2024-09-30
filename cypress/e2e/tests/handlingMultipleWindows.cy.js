@@ -22,7 +22,6 @@ describe(`Multiple window`, function () {
     it(`new tab`, function () {
 
         cy.get(`.Windows_section2`).contains(`Launch New Tab`).click();
-
         cy.window().then(function (win) {
             cy.wait(3000);
             expect(win.document.title).to.include(``);
